@@ -3,18 +3,18 @@ import matplotlib.pyplot as plot
 import numpy as np
 from pylab import rcParams
 
+# Need or no?
+#def print_round_plot(values: list, title: str, ticks: list):
+    #fig1, ax1 = plot.subplots()
+    #colors = ['#6495ED', '#FF7F50', '#8A2BE2']
 
-def print_round_plot(values: list, title: str, ticks: list):
-    fig1, ax1 = plot.subplots()
-    colors = ['#dbdbdb', '#ededed', 'white']
+    #ax1.pie(values, labels=ticks, autopct='%1.1f%%', colors=colors,
+            #shadow=True, startangle=90)
 
-    ax1.pie(values, labels=ticks, autopct='%1.1f%%', colors=colors,
-            shadow=True, startangle=90)
-
-    ax1.axis('equal')
-    plot.title(title)
-    plot.tight_layout()
-    plot.show()
+    #ax1.axis('equal')
+    #plot.title(title)
+    #plot.tight_layout()
+    #plot.show()
 
 
 def print_plot(values: list, label_x: str, label_y: str, title: str, ticks: list):
@@ -31,7 +31,7 @@ def print_plot(values: list, label_x: str, label_y: str, title: str, ticks: list
                    values['max'],
                    align="edge",
                    width=column_width,
-                   color='white',
+                   color='#8A2BE2',
                    edgecolor='black',
                    linewidth=border_width)
 
@@ -39,7 +39,7 @@ def print_plot(values: list, label_x: str, label_y: str, title: str, ticks: list
                     values['mean'],
                     align="edge",
                     width=column_width,
-                    color='#ededed',
+                    color='#FF7F50',
                     edgecolor='black',
                     linewidth=border_width)
 
@@ -47,7 +47,7 @@ def print_plot(values: list, label_x: str, label_y: str, title: str, ticks: list
                    values['min'],
                    align="edge",
                    width=column_width,
-                   color='#dbdbdb',
+                   color='#6495ED',
                    edgecolor='black',
                    linewidth=border_width)
 
@@ -62,8 +62,12 @@ dataset = pd.read_csv("var02.csv")
 
 student_grades = dataset.groupby("stid")['stmark'].agg(['count', 'max', 'mean', 'min']).reset_index()
 subject_marks = dataset.groupby("discid")['stmark'].agg(['count', 'max', 'mean', 'min']).reset_index()
-semester_marks = dataset.groupby("semnum")['stmark'].agg(['count', 'mean']).reset_index()
+
+# Need or no?
+#semester_marks = dataset.groupby("semnum")['stmark'].agg(['count', 'mean']).reset_index()
 
 print_plot(student_grades, "Student ID", "Mark", "Student to grade ratio", student_grades['stid'])
 print_plot(subject_marks, "Subject ID", "Mark", "Subject to grade ratio", subject_marks['discid'])
-print_round_plot(semester_marks['count'], "Subject to semester ratio", semester_marks['semnum'])
+
+# Need or no?
+#print_round_plot(semester_marks['count'], "Subject to semester ratio", semester_marks['semnum'])
